@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <button id="attack-button" onclick="attack()">Hitem</button>
+        <h3 id="game-message"></h3>
+    <h3>ohealth:<span id="o-health"></span></h3>
+    
+  
+ 
+    <h3>phealth:<span id="player-health"></span></h3>
+  
+
+    <button id="restart-game" hidden="true" onclick ="restart()">RestartGame</button>
+    
+</body>
+<script>
+let player ={
+    health:100,
+    power:20
+
+}
+
+let o ={
+    health:100,
+    power:20
+}
+
+
+const attack= () => {
+    let attackButton= document.getElementById('attack-button');
+    let gamemessage= document.getElementById('game-message');
+    let restartButton = document.getElementById('restart-game');
+
+
+    let playerattack= determineAttack(player.power);
+    o.health -= playerattack;
+    printToScreen();
+    attackButton.disabled=true;
+    gamemessage.innerText="opponent will strike"
+
+    if (isGameover(o.health)){
+        endGame("playerWON")
+        return;
+    }
+    setTimeout(() => {
+    let oattack= Math.floor(Math.random()* o.power);
+    player.health -= oattack;
+    printToScreen();
+    attackButton.disabled=false;
+    gamemessage.innerText="player is ready"
+
+    if (isGameover(player.health)){
+        endGame("opponent WON")
+        return;
+    }
+    },500);
+}
+
+const endGame=(message) => {
+    document.getElementById('game-message').innerText= message;
+    document.getElementById('attack-button').hidden= true;
+    document.getElementById('restart-game').hidden= false;
+}
+
+const restart= () =>{
+    let attackButton =    document.getElementById('attack-button').hidden= false;
+    player.health = 100;
+    o.health =100; 
+    document.getElementById('game-message').innerText= "";
+    attackButton.disabled ="false"
+    attackButton.hidden="false"
+    document.getElementById('restart-game').hidden= true;
+    printToScreen();
+
+
+
+}
+const isGameover= (health) => {
+    return health <= 0;
+}
+
+
+const determineAttack = (power) => {
+    Math.floor(Math.random()*power);
+    return Math.floor(Math.random()*power);
+}
+
+const printToScreen = () => {
+    document.getElementById('o-health').innerText= o.health;
+    document.getElementById('player-health').innerText= player.health;
+    
+}
+printToScreen();
+
+</script>
+
+</html>
