@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <button id="attack-button" onclick="attack()">Hitem</button>
+        <h3 id="game-message"></h3>
+    <h3>ScarHealth:<span id="o-health"></span></h3>
+    
+  
+ 
+    <h3>NalaHealth:<span id="player-health"></span></h3>
+  
+
+    <button id="restart-game" hidden="true" onclick ="restart()">RestartGame</button>
+    
+</body>
+<!-- Here we added a link to the jQuery library -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+let scar = {
+    name: 'Scar',
+    health:100,
+    power:20,
+    imageUrl:""    
+}
+let Nala = {
+        name: 'nala',
+        health:100,
+        power:20,
+        imageUrl:""    
+    }
+let Yazu = {
+        name: 'yazu',
+        health:100,
+        power:20,
+        imageUrl:""    
+    }
+
+
+
+    let attackButton= document.getElementById('attack-button');
+    let gamemessage= document.getElementById('game-message');
+    let restartButton = document.getElementById('restart-game');
+
+const attack= () => {
+ 
+    let nalaattack= determineAttack(nala.power);
+    scar.health = 0;
+    printToScreen();
+    attackButton.disabled=true;
+    gamemessage.innerText="opponent will strike"
+
+    if (isGameover(scar.health)){
+        endGame("playerWON")
+        return;
+  
+}
+
+const endGame=(message) => {
+    document.getElementById('game-message').innerText= message;
+    document.getElementById('attack-button').hidden= true;
+    document.getElementById('restart-game').hidden= false;
+}
+
+const restart= () =>{
+    let attackButton = document.getElementById('attack-button').hidden= false;
+    nala.health = 100;
+    scar.health =100; 
+    document.getElementById('game-message').innerText= "";
+    attackButton.disabled ="false"
+    attackButton.hidden="false"
+    document.getElementById('restart-game').hidden= true;
+    printToScreen();
+
+
+
+}
+const isGameover= (health) => {
+    return health <= 0;
+}
+
+
+const determineAttack = (power) => {
+    Math.floor(Math.random()*power);
+    return Math.floor(Math.random()*power);
+}
+
+const printToScreen = () => {
+    document.getElementById('o-health').innerText= scar.health;
+    document.getElementById('player-health').innerText= nala.health;
+    
+}
+printToScreen();
+
+</script>
+
+</html>
