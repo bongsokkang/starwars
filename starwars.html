@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    
 </head>
 <body>
         <button id="attack-button" onclick="attack()">Hitem</button>
@@ -14,11 +15,13 @@
   
  
     <h3>NalaHealth:<span id="player-health"></span></h3>
+    <p id="nala-image"></p>
   
 
     <button id="restart-game" hidden="true" onclick ="restart()">RestartGame</button>
     
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Here we added a link to the jQuery library -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -35,12 +38,7 @@ let Nala = {
         power:20,
         imageUrl:""    
     }
-let Yazu = {
-        name: 'yazu',
-        health:100,
-        power:20,
-        imageUrl:""    
-    }
+
 
 
 
@@ -49,8 +47,13 @@ let Yazu = {
     let restartButton = document.getElementById('restart-game');
 
 const attack= () => {
- 
+    nala screen
+    var newMessage = $("nala-image").append(img src="http://vignette2.wikia.nocookie.net/loveinterest/images/5/52/Imagetlknaac.jpg/revision/latest?cb=20150805211923");
+    alert ("nala is attacking");
+
     let nalaattack= determineAttack(nala.power);
+    scar screen
+    wait 10 seconds
     scar.health = 0;
     printToScreen();
     attackButton.disabled=true;
